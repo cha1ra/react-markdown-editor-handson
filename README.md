@@ -49,3 +49,9 @@ https://www.typescriptlang.org/docs/handbook/jsx.html#basic-usage
 ```shell script
 npm i webpack-dev-server@3
 ```
+
+### styled-components 導入
+
+```shell script
+npm i styled-components@5 @types/styled-components@5
+```
