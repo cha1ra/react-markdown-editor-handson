@@ -2,7 +2,7 @@
 techpit react * typescript handson
 cf. https://www.techpit.jp/courses/111/
 
-## Tutorial
+## 事前準備
 
 ### Webpack & TypeScript のセットアップ
 
@@ -55,3 +55,21 @@ npm i webpack-dev-server@3
 ```shell script
 npm i styled-components@5 @types/styled-components@5
 ```
+
+## React を触ってみる
+
+### Reactの特徴
+1. 宣言的なView
+2. コンポーネントベース
+3. 一度学習すればどこでも使える
+
+宣言的なViewとは？
+- 手続き方Viewの宣言方法の解決案として登場
+- そもそも: VanillaJSやjQueryのような宣言方法は "手続き型" と呼ばれる
+  - 問題点: 見た目(HTML)と動作(JS)のコードが分離している→何をしたらどう変更されるのかがわかりづらい
+  - 宣言的ViewではHTMLの中にJSが書かれているので、見た目と動作を一つかみに把握することができる
+- 手続き型Viewでも同様の挙動は実現できるっちゃできるが、変更があるたびにDOMを毎回作り直すことになっちゃう
+- そこらへん、Reactでは仮想DOMを作って差分検知を実施。差分だけの更新を行う仕組みを作っている
+
+
+
