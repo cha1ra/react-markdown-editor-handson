@@ -32,5 +32,13 @@ module.exports = {
     filename: 'index.js',
     // 相対パスにも dist/を追加してくれる 的な認識
     publicPath: 'dist/',
+  },
+  devServer: {
+    // ビルドしたファイルにアクセスするためのパス
+    publicPath: '/dist/',
+    // hot reload する？
+    hot: true,
+    // 起動時にブラウザで開く？
+    open: true,
   }
 }

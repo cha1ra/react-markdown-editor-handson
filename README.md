@@ -44,3 +44,8 @@ npm i react@17 react-dom@17 @types/react@17 @types/react-dom@17
 cf. typescript で jsxを使いたい場合  
 https://www.typescriptlang.org/docs/handbook/jsx.html#basic-usage  
   
+### Webpack Dev Server のセットアップ
+
+```shell script
+npm i webpack-dev-server@3
+```
