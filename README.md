@@ -31,3 +31,16 @@ webpackに適用させる
 npm i ts-loader@9
 ```
 
+### React のセットアップ
+
+```shell script
+npm i react@17 react-dom@17 @types/react@17 @types/react-dom@17
+```
+- react ... React本体
+- react-dom ... Reactをブラウザで使うためのライブラリ
+- @types/react ... Reactの型定義
+- @typpes/react-dom ... react-domの型定義
+
+cf. typescript で jsxを使いたい場合  
+https://www.typescriptlang.org/docs/handbook/jsx.html#basic-usage  
+  
