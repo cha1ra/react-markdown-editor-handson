@@ -4,7 +4,24 @@ module.exports = {
   // 最初に読み込むファイルの指定
   // ここに指定されたファイルから別ファイルを読み込む指定があると
   // そこも読み取って1つにまとめて出力する
-  entry: './src/index.js',
+  entry: './src/index.ts',
+  module: {
+    // webpackに対してビルド時に追加で行う処理の記述
+    rules: [
+      {
+        // .ts で終わるファイルに対して
+        test: /\.ts$/,
+        // ts-loader を実行する
+        use: 'ts-loader',
+        // 除外するファイルを正規表現で指定
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  // モジュールとして解決するファイルの拡張子を指定する
+  resolve: {
+    extensions: ['.ts'],
+  },
   // 出力ファイルの設定
   output: {
     // dist ディレクトリに対して

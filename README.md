@@ -4,7 +4,7 @@ cf. https://www.techpit.jp/courses/111/
 
 ## Tutorial
 
-### setup
+### Webpack & TypeScript のセットアップ
 
 ```shell script
 npm install webpack@5 webpack-cli@4
@@ -25,3 +25,9 @@ npm i typescript@4
 cf. tsconfig.json の関する公式記事  
 https://www.typescriptlang.org/tsconfig  
   
+webpackに適用させる
+
+```shell script
+npm i ts-loader@9
+```
+
