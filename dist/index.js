@@ -1,1 +1,1 @@
-console.log("hello! w/ typescript");
+console.log("Hello, Webpack + TypeScript!");
