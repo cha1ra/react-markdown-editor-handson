@@ -4,6 +4,9 @@ import {useStateWithStorage} from "../hooks/use_state_with_storage"
 import * as ReactMarkdown from "react-markdown"
 import {putMemo} from "../indexeddb/memo";
 import {Button} from "../components/button";
+import {SaveModal} from "../components/save_modal";
+
+const {useState} = React
 
 // styled.(HTMLタグ名) でタグを指定、その後 `` 内に CSS を記述する
 const Header = styled.header`
@@ -72,9 +75,8 @@ export const Editor: React.FC = () => {
     // const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
     const [text, setText] = useStateWithStorage('', StorageKey)
 
-    const saveMemo = (): void => {
-        putMemo('TITLE', text)
-    }
+
+    const [showModal, setShowModal] = useState(false)
 
     // <> は <React.Fragment> の短縮系 実際には描画されないタグ
     // Reactのコンポーネントは１要素をreturnしなければならない都合上、このような書き方が用いられる
@@ -84,7 +86,7 @@ export const Editor: React.FC = () => {
             <Header>
                 Markdown Editor
                 <HeaderControl>
-                    <Button onClick={saveMemo}>
+                    <Button onClick={() => setShowModal(true)}>
                         保存する
                     </Button>
                 </HeaderControl>
@@ -98,6 +100,15 @@ export const Editor: React.FC = () => {
                     <ReactMarkdown>{text}</ReactMarkdown>
                 </Preview>
             </Wrapper>
+            {showModal && (
+                <SaveModal
+                    onSave={(title: string): void => {
+                        putMemo(title, text)
+                        setShowModal(false)
+                    }}
+                    onCancel={() => setShowModal(false)}
+                />
+            )}
         </>
     )
 }
