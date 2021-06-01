@@ -86,4 +86,19 @@ IndexedDBをラップしたライブラリを使うと扱いやすい。今回�
   - `title`
   - `text`
 
+## react-routerの導入
+
+```shell script
+npm i react-router-dom@5 @types/react-router-dom@5
+```
+
+cf. HashRouter と BrowserRouter の違い
+- https://stackoverflow.com/questions/51974369/what-is-the-difference-between-hashrouter-and-browserrouter-in-react
+- `HasuRouter` の方は、URLであるように見せかけて、実は #hoge の位置に移動しているだけ
+- だから、静的ホスティングをするページ (Github Pages など)で使いやすい
+- 一方、BrowserRouterはWebサーバ側をいじらなきゃいけない
+- なので、今回はHashRouterを採用している
+
+
+
 
