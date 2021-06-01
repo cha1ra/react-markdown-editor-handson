@@ -7,6 +7,12 @@ import {
 } from 'react-router-dom'
 import styled from "styled-components";
 import {Header} from "../components/header";
+import {
+    getMemos,
+    MemoRecord,
+} from "../indexeddb/memo";
+
+const {useState, useEffect} = React
 
 const HeaderArea = styled.div`
     position: fixed;
@@ -25,6 +31,17 @@ const Wrapper = styled.div`
   `
 
 export const History: React.FC = () => {
+
+    const [memos, setMemos] = useState<MemoRecord[]>([])
+    console.log(memos)
+
+    // 副作用エフェクト レンダリングの後に実行される
+    // useEffect(実行したい関数, 変更を監視する状態の配列)
+    // https://ja.reactjs.org/docs/hooks-effect.html
+    useEffect(() => {
+        getMemos().then(setMemos)
+    }, [])
+
     return (
         <>
             <HeaderArea>

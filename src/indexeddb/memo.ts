@@ -19,3 +19,10 @@ export const putMemo = async (title: string, text: string): Promise<void> => {
     const datetime = new Date().toISOString()
     await memos.put({datetime, title, text})
 }
+
+// <MemoRecord[]> ... テキスト履歴をリストで取得する関数を定義
+export const getMemos = (): Promise<MemoRecord[]> => {
+    return memos.orderBy('datetime')
+        .reverse()
+        .toArray()
+}
