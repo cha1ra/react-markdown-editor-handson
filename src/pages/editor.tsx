@@ -2,10 +2,15 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {useStateWithStorage} from "../hooks/use_state_with_storage"
 import * as ReactMarkdown from "react-markdown"
+import {putMemo} from "../indexeddb/memo";
+import {Button} from "../components/button";
 
 // styled.(HTMLタグ名) でタグを指定、その後 `` 内に CSS を記述する
 const Header = styled.header`
   font-size: 1.5rem;
+  align-content: center;
+  display: flex;
+  justify-content: space-between;
   height: 2rem;
   left: 0;
   line-height: 2rem;
@@ -13,6 +18,12 @@ const Header = styled.header`
   position: fixed;
   right: 0;
   top: 0;
+`
+
+const HeaderControl = styled.div`
+  height: 2rem;
+  display: flex;
+  align-content: center;
 `
 
 const Wrapper = styled.div`
@@ -61,6 +72,10 @@ export const Editor: React.FC = () => {
     // const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
     const [text, setText] = useStateWithStorage('', StorageKey)
 
+    const saveMemo = (): void => {
+        putMemo('TITLE', text)
+    }
+
     // <> は <React.Fragment> の短縮系 実際には描画されないタグ
     // Reactのコンポーネントは１要素をreturnしなければならない都合上、このような書き方が用いられる
     // <div> タグで囲ってもいいけど、無駄な要素が増えてしまうからあんまやらない
@@ -68,6 +83,11 @@ export const Editor: React.FC = () => {
         <>
             <Header>
                 Markdown Editor
+                <HeaderControl>
+                    <Button onClick={saveMemo}>
+                        保存する
+                    </Button>
+                </HeaderControl>
             </Header>
             <Wrapper>
                 <TextArea
