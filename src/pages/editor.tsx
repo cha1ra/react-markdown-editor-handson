@@ -46,6 +46,9 @@ const Preview = styled.div`
   width: 50vw;
 `
 
+// 今回は ファイルパス:値の名前 という命名規則でキーを定義
+const StorageKey = 'pages/editor:text'
+
 // Editor 変数は React.FC 型である と定義
 // FC は Functional Component の略
 export const Editor: React.FC = () => {
@@ -55,7 +58,7 @@ export const Editor: React.FC = () => {
     //   - 値, 初期値 は string型である必要がある
     //   - 値をセットする関数の引数は string 型である必要がある
     // 注意点: if文など、ネストされた関数内で呼び出すのはNG
-    const [text, setText] = useState<string>('')
+    const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
 
     // <> は <React.Fragment> の短縮系 実際には描画されないタグ
     // Reactのコンポーネントは１要素をreturnしなければならない都合上、このような書き方が用いられる
@@ -68,7 +71,9 @@ export const Editor: React.FC = () => {
             <Wrapper>
                 <TextArea
                     onChange={(event) => {
-                        setText(event.target.value)
+                        const changedText = event.target.value
+                        localStorage.setItem(StorageKey, changedText)
+                        setText(changedText)
                     }}
                     value={text}
                 />
