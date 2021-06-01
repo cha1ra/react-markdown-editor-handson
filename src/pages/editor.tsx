@@ -5,6 +5,7 @@ import * as ReactMarkdown from "react-markdown"
 import {putMemo} from "../indexeddb/memo";
 import {Button} from "../components/button";
 import {SaveModal} from "../components/save_modal";
+import {Link} from "react-router-dom";
 
 const {useState} = React
 
@@ -89,6 +90,9 @@ export const Editor: React.FC = () => {
                     <Button onClick={() => setShowModal(true)}>
                         保存する
                     </Button>
+                    <Link to="/history">
+                        履歴をみる
+                    </Link>
                 </HeaderControl>
             </Header>
             <Wrapper>
