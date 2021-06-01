@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-
-const { useState } = React
+import {useStateWithStorage} from "../hooks/use_state_with_storage"
 
 // styled.(HTMLタグ名) でタグを指定、その後 `` 内に CSS を記述する
 const Header = styled.header`
@@ -58,7 +57,8 @@ export const Editor: React.FC = () => {
     //   - 値, 初期値 は string型である必要がある
     //   - 値をセットする関数の引数は string 型である必要がある
     // 注意点: if文など、ネストされた関数内で呼び出すのはNG
-    const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
+    // const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
+    const [text, setText] = useStateWithStorage('', StorageKey)
 
     // <> は <React.Fragment> の短縮系 実際には描画されないタグ
     // Reactのコンポーネントは１要素をreturnしなければならない都合上、このような書き方が用いられる
@@ -70,11 +70,7 @@ export const Editor: React.FC = () => {
             </Header>
             <Wrapper>
                 <TextArea
-                    onChange={(event) => {
-                        const changedText = event.target.value
-                        localStorage.setItem(StorageKey, changedText)
-                        setText(changedText)
-                    }}
+                    onChange={event => setText(event.target.value)}
                     value={text}
                 />
                 <Preview>プレビューエリア</Preview>
