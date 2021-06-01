@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+// styled.(HTMLタグ名) でタグを指定、その後 `` 内に CSS を記述する
 const Header = styled.header`
   font-size: 1.5rem;
   height: 2rem;
