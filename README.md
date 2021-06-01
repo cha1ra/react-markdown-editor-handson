@@ -71,5 +71,19 @@ npm i styled-components@5 @types/styled-components@5
 - 手続き型Viewでも同様の挙動は実現できるっちゃできるが、変更があるたびにDOMを毎回作り直すことになっちゃう
 - そこらへん、Reactでは仮想DOMを作って差分検知を実施。差分だけの更新を行う仕組みを作っている
 
+## IndexedDBを使ってみる
+
+- https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API/Basic_Concepts_Behind_IndexedDB
+- https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API/Browser_storage_limits_and_eviction_criteria#storage_limits
+  
+IndexedDBをラップしたライブラリを使うと扱いやすい。今回はDexieを使用
+- https://dexie.org/
+
+今回は以下のオブジェクトストアを作成
+- ストア名: `memos`
+- 保存するデータ
+  - `datetime`
+  - `title`
+  - `text`
 
 
