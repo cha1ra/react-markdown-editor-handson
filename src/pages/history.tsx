@@ -52,10 +52,15 @@ const MemoText = styled.div`
     white-space: nowrap;
   `
 
+interface Props {
+    setText: (text: string) => void
+}
 
-export const History: React.FC = () => {
 
+export const History: React.FC<Props> = (props) => {
+    const {setText} = props
     const [memos, setMemos] = useState<MemoRecord[]>([])
+    const history = useHistory()
 
     // 副作用エフェクト レンダリングの後に実行される
     // useEffect(実行したい関数, 変更を監視する状態の配列)
@@ -76,7 +81,13 @@ export const History: React.FC = () => {
             <Wrapper>
                 {memos.map(memo => (
                     // keyを指定しないとパフォーマンスに影響する
-                    <Memo key={memo.datetime}>
+                    <Memo
+                        key={memo.datetime}
+                        onClick={() => {
+                            setText(memo.text)
+                            history.push('/editor')
+                        }}
+                    >
                         <MemoTitle>{memo.title}</MemoTitle>
                         <MemoText>{memo.text}</MemoText>
                     </Memo>

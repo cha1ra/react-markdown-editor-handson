@@ -53,9 +53,16 @@ const Preview = styled.div`
 // 今回は ファイルパス:値の名前 という命名規則でキーを定義
 const StorageKey = 'pages/editor:text'
 
+interface Props {
+    text: string
+    setText: (text: string) => void
+}
+
+
 // Editor 変数は React.FC 型である と定義
 // FC は Functional Component の略
-export const Editor: React.FC = () => {
+export const Editor: React.FC<Props> = (props) => {
+    const {text, setText} = props
     // ReactHookの書き方
     // const [値, 値をセットする関数] = useState<扱う状態の型>(初期値)
     // <sting> ... TypeScriptのジェネリクス(総称型)という型定義の方法
@@ -63,7 +70,7 @@ export const Editor: React.FC = () => {
     //   - 値をセットする関数の引数は string 型である必要がある
     // 注意点: if文など、ネストされた関数内で呼び出すのはNG
     // const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
-    const [text, setText] = useStateWithStorage('', StorageKey)
+    // const [text, setText] = useStateWithStorage('', StorageKey)
 
 
     const [showModal, setShowModal] = useState(false)
