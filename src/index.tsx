@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {createGlobalStyle} from 'styled-components'
 // 作成したエディタ画面のインポート
 import {Editor} from './pages/editor'
+import {History} from "./pages/history";
 import {
     HashRouter as Router,
     Switch,
@@ -29,7 +30,7 @@ const Main = (
               <Editor />
           </Route>
           <Route exact path="/history">
-              <h1>History</h1>
+              <History />
           </Route>
           {/* 定義されていないパスにアクセスがあったらリダイレクトする */}
           <Redirect to="/editor" path="*" />
