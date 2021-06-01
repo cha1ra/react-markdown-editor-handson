@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+const { useState } = React
+
 // styled.(HTMLタグ名) でタグを指定、その後 `` 内に CSS を記述する
 const Header = styled.header`
   font-size: 1.5rem;
@@ -47,6 +49,14 @@ const Preview = styled.div`
 // Editor 変数は React.FC 型である と定義
 // FC は Functional Component の略
 export const Editor: React.FC = () => {
+    // ReactHookの書き方
+    // const [値, 値をセットする関数] = useState<扱う状態の型>(初期値)
+    // <sting> ... TypeScriptのジェネリクス(総称型)という型定義の方法
+    //   - 値, 初期値 は string型である必要がある
+    //   - 値をセットする関数の引数は string 型である必要がある
+    // 注意点: if文など、ネストされた関数内で呼び出すのはNG
+    const [text, setText] = useState<string>('')
+
     // <> は <React.Fragment> の短縮系 実際には描画されないタグ
     // Reactのコンポーネントは１要素をreturnしなければならない都合上、このような書き方が用いられる
     // <div> タグで囲ってもいいけど、無駄な要素が増えてしまうからあんまやらない
@@ -56,7 +66,12 @@ export const Editor: React.FC = () => {
                 Markdown Editor
             </Header>
             <Wrapper>
-                <TextArea value="テキスト入力エリア" />
+                <TextArea
+                    onChange={(event) => {
+                        setText(event.target.value)
+                    }}
+                    value={text}
+                />
                 <Preview>プレビューエリア</Preview>
             </Wrapper>
         </>
